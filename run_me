@@ -1,0 +1,14 @@
+#!/bin/bash
+ps ax --user vlad | grep -i "SCREEN -S minecraft java -Xms512M -Xmx1G -jar minecraft_server.jar nogui" | grep -v -i "grep"
+rc=$?
+if [ $rc -eq  0 ];then
+	echo "Connecting to existing server ..."
+	screen -r minecraft
+else
+	echo "Starting up a new server ..."
+	screen -S minecraft java -Xms512M -Xmx1G -jar minecraft_server.jar nogui
+fi
+
+
+
+
